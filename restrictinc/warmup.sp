@@ -200,6 +200,14 @@ public Action OnPlayerSpawn(Event event, const char [] name, bool dontBroadcast)
 	
 	if(Restrict_IsWarmupRound() && IsClientInGame(client) && GetClientTeam(client) > CS_TEAM_SPECTATOR && IsPlayerAlive(client))
 	{
+		if (g_iWarmupWeapon == CSWeapon_DECOY || g_iWarmupWeapon == CSWeapon_SMOKEGRENADE)
+		{
+			SetEntityHealth(client, 1);
+		}
+		else if (g_iWarmupWeapon == CSWeapon_HEGRENADE || g_iWarmupWeapon == CSWeapon_SNOWBALL)
+		{
+			SetEntityHealth(client, 10);
+		}
 		GiveWarmupWeapon(client);
 	}
 }
